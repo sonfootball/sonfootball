@@ -1,102 +1,115 @@
-import Image, { type ImageProps } from "next/image";
 import { Button } from "@sonfootball/ui/button";
-import styles from "./page.module.css";
+import type { Metadata } from "next";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
+export const metadata: Metadata = {
+  title: "Bảng điều khiển - SonFootball Admin",
+  description:
+    "Quản lý sản phẩm, đơn hàng và khách hàng của SonFootball. Theo dõi doanh thu và báo cáo chi tiết.",
+  robots: "noindex, nofollow",
 };
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
+export default function AdminDashboard() {
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/docs/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gray-50">
+      <header className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <h1 className="text-2xl font-bold text-gray-900">
+              SonFootball Admin
+            </h1>
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-700">Admin Dashboard</span>
+              <Button variant="outline" size="sm">
+                Đăng xuất
+              </Button>
+            </div>
+          </div>
         </div>
-        <Button appName="docs" className={styles.secondary}>
-          Open alert
-        </Button>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Bảng điều khiển
+          </h2>
+          <p className="text-gray-600">
+            Quản lý sản phẩm, đơn hàng và khách hàng của SonFootball
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              Sản phẩm
+            </h3>
+            <p className="text-3xl font-bold text-blue-600">0</p>
+            <p className="text-sm text-gray-600">Tổng số sản phẩm</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              Đơn hàng
+            </h3>
+            <p className="text-3xl font-bold text-green-600">0</p>
+            <p className="text-sm text-gray-600">Đơn hàng mới</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              Khách hàng
+            </h3>
+            <p className="text-3xl font-bold text-purple-600">0</p>
+            <p className="text-sm text-gray-600">Khách hàng đăng ký</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              Doanh thu
+            </h3>
+            <p className="text-3xl font-bold text-orange-600">0đ</p>
+            <p className="text-sm text-gray-600">Tháng này</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              Quản lý nhanh
+            </h3>
+            <div className="space-y-3">
+              <Button className="w-full justify-start">
+                📦 Quản lý sản phẩm
+              </Button>
+              <Button className="w-full justify-start">
+                📋 Quản lý đơn hàng
+              </Button>
+              <Button className="w-full justify-start">
+                👥 Quản lý khách hàng
+              </Button>
+              <Button className="w-full justify-start">
+                📊 Báo cáo doanh thu
+              </Button>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              Cài đặt hệ thống
+            </h3>
+            <div className="space-y-3">
+              <Button variant="outline" className="w-full justify-start">
+                ⚙️ Cài đặt chung
+              </Button>
+              <Button variant="outline" className="w-full justify-start">
+                💳 Cài đặt thanh toán
+              </Button>
+              <Button variant="outline" className="w-full justify-start">
+                🚚 Cài đặt vận chuyển
+              </Button>
+              <Button variant="outline" className="w-full justify-start">
+                📧 Cài đặt email
+              </Button>
+            </div>
+          </div>
+        </div>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.com →
-        </a>
-      </footer>
     </div>
   );
 }
