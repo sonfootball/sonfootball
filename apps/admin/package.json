@@ -12,9 +12,12 @@
   },
   "dependencies": {
     "@sonfootball/ui": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.11",
     "next": "^15.4.2",
+    "postcss": "^8.4.31",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@sonfootball/eslint-config": "workspace:*",

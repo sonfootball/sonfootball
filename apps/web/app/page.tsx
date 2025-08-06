@@ -1,101 +1,180 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@sonfootball/ui/button";
-import styles from "./page.module.css";
+"use client";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+import { Header } from "@/components/Header";
+import { useCategories } from "@/hooks/useData";
+import { useBrands } from "@/hooks/useData";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const {
+    categories,
+    loading: categoriesLoading,
+    error: categoriesError,
+  } = useCategories();
+  const { brands, loading: brandsLoading, error: brandsError } = useBrands();
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Hero Section */}
+        <section className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">SonFootball</h1>
+          <p className="text-xl text-gray-600 mb-8">
+            Giày đá bóng chính hãng - Nơi mua giày đá bóng uy tín nhất Việt Nam
+          </p>
+          <div className="flex justify-center space-x-4">
+            <a
+              href="/products"
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Xem sản phẩm
+            </a>
+            <a
+              href="/categories"
+              className="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              Danh mục
+            </a>
+          </div>
+        </section>
+
+        {/* Categories Section */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Danh mục sản phẩm
+          </h2>
+          {categoriesLoading ? (
+            <div className="text-center py-8">
+              <div className="text-gray-500">Đang tải danh mục...</div>
+            </div>
+          ) : categoriesError ? (
+            <div className="text-center py-8">
+              <div className="text-red-500">Lỗi: {categoriesError}</div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categories.map((category) => (
+                <div
+                  key={category.id}
+                  className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+                >
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {category.name}
+                  </h3>
+                  {category.description && (
+                    <p className="text-gray-600 text-sm mb-4">
+                      {category.description}
+                    </p>
+                  )}
+                  <a
+                    href={`/categories/${category.slug}`}
+                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  >
+                    Xem sản phẩm →
+                  </a>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* Brands Section */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Thương hiệu</h2>
+          {brandsLoading ? (
+            <div className="text-center py-8">
+              <div className="text-gray-500">Đang tải thương hiệu...</div>
+            </div>
+          ) : brandsError ? (
+            <div className="text-center py-8">
+              <div className="text-red-500">Lỗi: {brandsError}</div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {brands.map((brand) => (
+                <div
+                  key={brand.id}
+                  className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow text-center"
+                >
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {brand.name}
+                  </h3>
+                  {brand.description && (
+                    <p className="text-gray-600 text-xs mb-3">
+                      {brand.description}
+                    </p>
+                  )}
+                  <a
+                    href={`/brands/${brand.slug}`}
+                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  >
+                    Xem sản phẩm
+                  </a>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* Features Section */}
+        <section className="bg-white rounded-lg shadow-md p-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            Tại sao chọn SonFootball?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">✓</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Chính hãng 100%
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Tất cả sản phẩm đều là hàng chính hãng, có giấy tờ bảo hành đầy
+                đủ
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🚚</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Giao hàng toàn quốc
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Giao hàng nhanh chóng, an toàn đến tất cả tỉnh thành Việt Nam
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">💰</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Giá tốt nhất
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Cam kết giá tốt nhất thị trường với nhiều ưu đãi hấp dẫn
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.com →
-        </a>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-8 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h3 className="text-xl font-bold mb-4">SonFootball</h3>
+            <p className="text-gray-400 mb-4">
+              Giày đá bóng chính hãng - Nơi mua giày đá bóng uy tín nhất Việt
+              Nam
+            </p>
+            <div className="text-sm text-gray-400">
+              © 2025 SonFootball. Tất cả quyền được bảo lưu.
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
