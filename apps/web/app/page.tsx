@@ -3,6 +3,7 @@
 import { Header } from "@/components/Header";
 import { useCategories } from "@/hooks/useData";
 import { useBrands } from "@/hooks/useData";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const {
@@ -24,18 +25,12 @@ export default function Home() {
             Giày đá bóng chính hãng - Nơi mua giày đá bóng uy tín nhất Việt Nam
           </p>
           <div className="flex justify-center space-x-4">
-            <a
-              href="/products"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Xem sản phẩm
-            </a>
-            <a
-              href="/categories"
-              className="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
-            >
-              Danh mục
-            </a>
+            <Button webVariant="hero" asChild>
+              <a href="/products">Xem sản phẩm</a>
+            </Button>
+            <Button variant="secondary" asChild>
+              <a href="/categories">Danh mục</a>
+            </Button>
           </div>
         </section>
 
@@ -67,12 +62,9 @@ export default function Home() {
                       {category.description}
                     </p>
                   )}
-                  <a
-                    href={`/categories/${category.slug}`}
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                  >
-                    Xem sản phẩm →
-                  </a>
+                  <Button variant="link" asChild>
+                    <a href={`/categories/${category.slug}`}>Xem sản phẩm →</a>
+                  </Button>
                 </div>
               ))}
             </div>
@@ -105,12 +97,9 @@ export default function Home() {
                       {brand.description}
                     </p>
                   )}
-                  <a
-                    href={`/brands/${brand.slug}`}
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                  >
-                    Xem sản phẩm
-                  </a>
+                  <Button variant="link" size="sm" asChild>
+                    <a href={`/brands/${brand.slug}`}>Xem sản phẩm</a>
+                  </Button>
                 </div>
               ))}
             </div>
