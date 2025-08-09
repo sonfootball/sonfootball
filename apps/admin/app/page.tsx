@@ -37,6 +37,20 @@ export default function AdminDashboard() {
           </p>
         </div>
 
+        {/* Action Buttons */}
+        <div className="mb-8 flex flex-wrap gap-4">
+          <Button size="lg">➕ Thêm sản phẩm mới</Button>
+          <Button variant="secondary" size="lg">
+            📊 Xem báo cáo
+          </Button>
+          <Button variant="outline" size="lg">
+            ⚙️ Cài đặt
+          </Button>
+          <Button variant="ghost" size="lg">
+            📚 Hướng dẫn
+          </Button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -44,6 +58,9 @@ export default function AdminDashboard() {
             </h3>
             <p className="text-3xl font-bold text-blue-600">0</p>
             <p className="text-sm text-gray-600">Tổng số sản phẩm</p>
+            <Button variant="link" size="sm" className="mt-2 p-0 h-auto">
+              Xem tất cả →
+            </Button>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -51,6 +68,9 @@ export default function AdminDashboard() {
             </h3>
             <p className="text-3xl font-bold text-green-600">0</p>
             <p className="text-sm text-gray-600">Đơn hàng mới</p>
+            <Button variant="link" size="sm" className="mt-2 p-0 h-auto">
+              Xem tất cả →
+            </Button>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -58,6 +78,9 @@ export default function AdminDashboard() {
             </h3>
             <p className="text-3xl font-bold text-purple-600">0</p>
             <p className="text-sm text-gray-600">Khách hàng đăng ký</p>
+            <Button variant="link" size="sm" className="mt-2 p-0 h-auto">
+              Xem tất cả →
+            </Button>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -65,6 +88,9 @@ export default function AdminDashboard() {
             </h3>
             <p className="text-3xl font-bold text-orange-600">0đ</p>
             <p className="text-sm text-gray-600">Tháng này</p>
+            <Button variant="link" size="sm" className="mt-2 p-0 h-auto">
+              Xem chi tiết →
+            </Button>
           </div>
         </div>
 
@@ -105,6 +131,103 @@ export default function AdminDashboard() {
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 📧 Cài đặt email
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Button Examples */}
+        <div className="mt-8 bg-white rounded-lg shadow-md p-6">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+            Tất cả các loại Button từ packages/ui
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="space-y-2">
+              <Button variant="default" size="sm">
+                Default
+              </Button>
+              <Button variant="default" size="default">
+                Default
+              </Button>
+              <Button variant="default" size="lg">
+                Default
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <Button variant="secondary" size="sm">
+                Secondary
+              </Button>
+              <Button variant="secondary" size="default">
+                Secondary
+              </Button>
+              <Button variant="secondary" size="lg">
+                Secondary
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <Button variant="outline" size="sm">
+                Outline
+              </Button>
+              <Button variant="outline" size="default">
+                Outline
+              </Button>
+              <Button variant="outline" size="lg">
+                Outline
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <Button variant="ghost" size="sm">
+                Ghost
+              </Button>
+              <Button variant="ghost" size="default">
+                Ghost
+              </Button>
+              <Button variant="ghost" size="lg">
+                Ghost
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <Button variant="link" size="sm">
+                Link
+              </Button>
+              <Button variant="link" size="default">
+                Link
+              </Button>
+              <Button variant="link" size="lg">
+                Link
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <Button variant="destructive" size="sm">
+                Destructive
+              </Button>
+              <Button variant="destructive" size="default">
+                Destructive
+              </Button>
+              <Button variant="destructive" size="lg">
+                Destructive
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <Button variant="default" size="icon">
+                🔍
+              </Button>
+              <Button variant="secondary" size="icon">
+                ⚙️
+              </Button>
+              <Button variant="outline" size="icon">
+                📝
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <Button variant="ghost" size="icon">
+                ❌
+              </Button>
+              <Button variant="destructive" size="icon">
+                🗑️
+              </Button>
+              <Button variant="link" size="icon">
+                🔗
               </Button>
             </div>
           </div>
