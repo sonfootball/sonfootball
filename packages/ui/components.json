@@ -11,10 +11,10 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@sonfootball/ui/components",
-    "utils": "@sonfootball/ui/lib/utils",
-    "hooks": "@sonfootball/ui/hooks",
-    "lib": "@sonfootball/ui/lib",
-    "ui": "@sonfootball/ui/components"
+    "components": "@/components",
+    "hooks": "@/hooks",
+    "lib": "@/lib",
+    "utils": "@/lib/utils",
+    "ui": "@/components"
   }
 }
