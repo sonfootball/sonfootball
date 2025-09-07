@@ -1,0 +1,35 @@
+{
+  "name": "@sonfootball/supabase",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./types": "./src/types.ts",
+    "./auth": "./src/auth.ts",
+    "./data": "./src/data.ts",
+    "./hooks": "./src/hooks.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@supabase/auth-helpers-react": "^0.4.2",
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@sonfootball/eslint-config": "workspace:*",
+    "@sonfootball/typescript-config": "workspace:*",
+    "@types/react": "^18.0.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "next": "^14.0.0"
+  }
+}

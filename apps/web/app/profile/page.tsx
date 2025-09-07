@@ -1,8 +1,8 @@
 "use client";
 
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@sonfootball/supabase";
 import { Header } from "@/components/Header";
-import { Button } from "@sonfootball/ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function ProfilePage() {
   const { user, loading, signOut } = useAuth();
