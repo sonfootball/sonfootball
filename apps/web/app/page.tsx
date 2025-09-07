@@ -1,8 +1,8 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { useCategories } from "@/hooks/useData";
-import { useBrands } from "@/hooks/useData";
+import { useCategories } from "@sonfootball/supabase";
+import { useBrands } from "@sonfootball/supabase";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {

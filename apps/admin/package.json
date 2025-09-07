@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@sonfootball/ui": "workspace:*",
+    "@sonfootball/supabase": "workspace:*",
     "@tailwindcss/postcss": "^4.1.11",
     "next": "^15.4.2",
     "postcss": "^8.4.31",
