@@ -1,10 +1,20 @@
 import { supabase } from "./client";
 
 export async function signInWithGoogle() {
+  const redirectUrl = `${window.location.origin}/auth/callback`;
+
+  // Debug logging
+  console.log("Auth Debug:", {
+    "window.location.origin": window.location.origin,
+    "window.location.hostname": window.location.hostname,
+    redirectUrl: redirectUrl,
+    "current URL": window.location.href,
+  });
+
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${window.location.origin}/auth/callback`,
+      redirectTo: redirectUrl,
       queryParams: {
         access_type: "offline",
         prompt: "consent",
