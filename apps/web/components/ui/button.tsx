@@ -29,18 +29,11 @@ export interface WebButtonProps
   webVariant?: "hero" | "cta" | "subtle";
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, WebButtonProps>(
-  ({ className, webVariant, ...props }, ref) => {
-    return (
-      <BaseButton
-        ref={ref}
-        className={cn(webButtonVariants({ webVariant, className }))}
-        {...props}
-      />
-    );
-  }
-);
-Button.displayName = "WebButton";
-
-// Re-export the base button for cases where we want the original
-export { BaseButton };
+export function Button({ className, webVariant, ...props }: WebButtonProps) {
+  return (
+    <BaseButton
+      className={cn(webButtonVariants({ webVariant, className }))}
+      {...props}
+    />
+  );
+}
