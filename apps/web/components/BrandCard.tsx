@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import type { Brand } from "@sonfootball/supabase";
+import type { Brand } from "@sonfootball/supabase/types";
 
 interface BrandCardProps {
   brand: Brand;

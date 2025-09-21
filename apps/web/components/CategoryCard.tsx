@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import type { Category } from "@sonfootball/supabase";
+import type { Category } from "@sonfootball/supabase/types";
 
 interface CategoryCardProps {
   category: Category;
