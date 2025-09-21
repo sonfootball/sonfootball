@@ -1,21 +1,12 @@
-"use client";
-
-import { useAuth } from "@sonfootball/supabase";
+import { createClient as createSSRServerClient } from "@sonfootball/supabase/server";
 import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@/components/SignOutButton";
 
-export function UserInfo() {
-  const { user, loading } = useAuth();
+export async function UserProfileServer() {
+  const supabase = await createSSRServerClient();
+  const { data, error } = await supabase.auth.getUser();
 
-  if (loading) {
-    return (
-      <div className="text-center">
-        <div className="text-gray-500">Đang tải...</div>
-      </div>
-    );
-  }
-
-  if (!user) {
+  if (error || !data?.user) {
     return (
       <div className="text-center">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">
@@ -25,6 +16,8 @@ export function UserInfo() {
       </div>
     );
   }
+
+  const user = data.user;
 
   return (
     <div className="bg-white rounded-lg shadow-md p-8">

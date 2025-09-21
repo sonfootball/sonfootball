@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@sonfootball/supabase";
+import { useAuth } from "@sonfootball/supabase/hooks";
 import Link from "next/link";
 import { useState } from "react";
 import {
