@@ -3,6 +3,7 @@
 import { useAuth } from "@sonfootball/supabase/hooks";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +14,8 @@ import {
 } from "@sonfootball/ui/dropdown-menu";
 
 export function UserDropdownContent() {
+  const router = useRouter();
+
   const { user, signInWithGoogle, signOut, loading } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,7 +46,14 @@ export function UserDropdownContent() {
               <Link href="/profile">Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={signOut}>Đăng xuất</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={async () => {
+                await signOut();
+                router.push("/");
+              }}
+            >
+              Đăng xuất
+            </DropdownMenuItem>
           </>
         ) : (
           <DropdownMenuItem onClick={signInWithGoogle}>
