@@ -1,5 +1,5 @@
 import { type NextRequest } from "next/server";
-import { createClient as createSSRServerClient } from "@sonfootball/supabase/server";
+import { createServerClient } from "@sonfootball/supabase/server";
 import { redirect } from "next/navigation";
 
 export async function GET(request: NextRequest) {
@@ -13,7 +13,8 @@ export async function GET(request: NextRequest) {
   }
 
   if (code) {
-    const supabase = await createSSRServerClient();
+    const supabase = await createServerClient();
+
     const { error: exchangeError } =
       await supabase.auth.exchangeCodeForSession(code);
 

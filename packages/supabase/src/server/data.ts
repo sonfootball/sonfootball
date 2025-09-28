@@ -1,7 +1,9 @@
-import { supabase } from "./client";
-import type { Category, Brand } from "./types";
+import { createServerClient } from "./client";
+import type { Category, Brand } from "../types";
 
-export async function fetchCategories(): Promise<Category[]> {
+export async function getCategories(): Promise<Category[]> {
+  const supabase = await createServerClient();
+
   const { data, error } = await supabase
     .from("categories")
     .select("*")
@@ -16,7 +18,9 @@ export async function fetchCategories(): Promise<Category[]> {
   return data || [];
 }
 
-export async function fetchBrands(): Promise<Brand[]> {
+export async function getBrands(): Promise<Brand[]> {
+  const supabase = await createServerClient();
+
   const { data, error } = await supabase
     .from("brands")
     .select("*")

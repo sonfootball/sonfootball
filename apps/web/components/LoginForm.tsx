@@ -1,16 +1,22 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@sonfootball/supabase/hooks";
+import { signInWithGoogleAction } from "@/app/actions/auth";
+import { getUser } from "@sonfootball/supabase/server";
+import { redirect } from "next/navigation";
 
-export function LoginForm() {
-  const { signInWithGoogle } = useAuth();
+export async function LoginForm() {
+  const user = await getUser();
+
+  if (user) {
+    redirect("/");
+  }
 
   return (
     <div className="space-y-4">
-      <Button onClick={signInWithGoogle} className="w-full" variant="outline">
-        Đăng nhập với Google
-      </Button>
+      <form action={signInWithGoogleAction}>
+        <Button type="submit" className="w-full" variant="ghost">
+          Đăng nhập với Google
+        </Button>
+      </form>
     </div>
   );
 }
