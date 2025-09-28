@@ -48,6 +48,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (user && request.nextUrl.pathname === "/login") {
+    return NextResponse.redirect(new URL("/profile", request.url));
+  }
+
   return supabaseResponse;
 }
 
