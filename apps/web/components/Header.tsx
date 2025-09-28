@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Avatar } from "./Avatar";
+import { UserDropdown } from "./UserDropdown";
 
 export function Header() {
   return (
@@ -7,7 +7,7 @@ export function Header() {
       <Link href="/" className="text-xl font-bold">
         SonFootball
       </Link>
-      <Avatar />
+      <UserDropdown />
     </header>
   );
 }
