@@ -5,13 +5,9 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./client": "./src/client.ts",
-    "./server": "./src/server.ts",
-    "./ssr-client": "./src/ssr-client.ts",
-    "./types": "./src/types.ts",
-    "./auth": "./src/auth.ts",
-    "./data": "./src/data.ts",
-    "./hooks": "./src/hooks.ts"
+    "./client": "./src/client/index.ts",
+    "./server": "./src/server/index.ts",
+    "./types": "./src/types.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

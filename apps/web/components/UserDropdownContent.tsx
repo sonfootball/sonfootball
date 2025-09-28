@@ -1,9 +1,6 @@
-"use client";
-
-import { useAuth } from "@sonfootball/supabase/hooks";
+import { signInWithGoogleAction, signOutAction } from "@/app/actions/auth";
+import { getUser } from "@sonfootball/supabase/server";
 import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,18 +10,11 @@ import {
   DropdownMenuTrigger,
 } from "@sonfootball/ui/dropdown-menu";
 
-export function UserDropdownContent() {
-  const router = useRouter();
-
-  const { user, signInWithGoogle, signOut, loading } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
-
-  if (loading) {
-    return null;
-  }
+export async function UserDropdownContent() {
+  const user = await getUser();
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="absolute inset-0" />
       </DropdownMenuTrigger>
@@ -46,19 +36,22 @@ export function UserDropdownContent() {
               <Link href="/profile">Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={async () => {
-                await signOut();
-                router.push("/");
-              }}
-            >
-              Đăng xuất
-            </DropdownMenuItem>
+            <form action={signOutAction}>
+              <DropdownMenuItem asChild>
+                <button type="submit" className="w-full text-left">
+                  Đăng xuất
+                </button>
+              </DropdownMenuItem>
+            </form>
           </>
         ) : (
-          <DropdownMenuItem onClick={signInWithGoogle}>
-            Đăng nhập
-          </DropdownMenuItem>
+          <form action={signInWithGoogleAction}>
+            <DropdownMenuItem asChild>
+              <button type="submit" className="w-full text-left">
+                Đăng nhập
+              </button>
+            </DropdownMenuItem>
+          </form>
         )}
       </DropdownMenuContent>
     </DropdownMenu>

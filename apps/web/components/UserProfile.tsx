@@ -1,23 +1,13 @@
-import { createClient as createSSRServerClient } from "@sonfootball/supabase/server";
+import { getUser } from "@sonfootball/supabase/server";
 import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@/components/SignOutButton";
 
-export async function UserProfileServer() {
-  const supabase = await createSSRServerClient();
-  const { data, error } = await supabase.auth.getUser();
+export async function UserProfile() {
+  const user = await getUser();
 
-  if (error || !data?.user) {
-    return (
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
-          Vui lòng đăng nhập
-        </h1>
-        <p className="text-gray-600">Bạn cần đăng nhập để xem trang cá nhân.</p>
-      </div>
-    );
+  if (!user) {
+    return null;
   }
-
-  const user = data.user;
 
   return (
     <div className="bg-white rounded-lg shadow-md p-8">

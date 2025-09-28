@@ -2,16 +2,12 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { CategoryCard } from "@/components/CategoryCard";
 import { BrandCard } from "@/components/BrandCard";
-import {
-  getCachedCategories,
-  getCachedBrands,
-} from "@sonfootball/supabase/server";
+import { getCategories, getBrands } from "@sonfootball/supabase/server";
 
 export default async function Home() {
-  // Fetch cached data on the server
   const [categories, brands] = await Promise.all([
-    getCachedCategories(),
-    getCachedBrands(),
+    getCategories(),
+    getBrands(),
   ]);
 
   return (
